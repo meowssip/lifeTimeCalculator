@@ -1,7 +1,13 @@
-body {background-color: black;}
- h1 {color: white;
+body {background-color: #191919;
+	max-width: 800px;
+	margin:auto;
+	text-align:center;
+	font-family: 'East Sea Dokdo', cursive;
+	}
+ h1 {color: black;
  	 text-align:center;}
- a{color: white;
+ a{
+   color:white;
    text-decoration:none
    }
  p{color:white;}
@@ -13,10 +19,23 @@ body {background-color: black;}
 }
 div {
 	text-align:center;
-	border:1px solid white;
 }
 #title{
+	font-style: initial;
+	
 	font-size: 48px;
+}
+#titleColor{
+	color: yellow;
+}
+#lineDiv{
+	border-top: 1px solid #303030;
+}
+#detailDivlineDiv{
+	border-top: 1px solid #303030;
+	width: 70%;
+	display: inline-block;
+	margin:0 auto;
 }
 
 td, th {
@@ -31,4 +50,119 @@ tr:nth-child(even) {
   color: white !important;
   
   
+}
+.calcButton{
+	background-color: #313131;
+	border: solid 1px #313131;
+	line-height: 25px;
+	left: -4px;
+	position: relative;
+	outline: none;
+	color: #6b6b6b;
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.tips{
+	color: #6b6b6b;
+	font-family: Sans-serif;
+	font-size: 14px;
+}
+.inputBox{
+	background-color: #131313;
+	color: white;
+	border: solid 1px #303030;
+	line-height: 25px;
+	width: 200px;
+	outline: none;
+	font-size: 14px;
+}
+.inputBox:focus{
+	border: 1px solid #1b63b9;
+}
+
+
+.formBox{
+	background-color: #212121;
+}
+.demonstrateDiv{
+	max-width: 200px;
+	margin: auto;
+}
+
+.errmsg{
+	color: white;
+}
+
+/* var txt = $("#flip").text(($("#flip").text() == 'Read More') ? 'Read More' : 'Read Less'.fadeIn();
+    $("#flip").text(txt); */
+    
+    /* var txt = $("#flip").is(':visible') ? 'Read More' : 'Read Less';
+    $("#flip").text(txt); */
+
+.detailDiv{
+	background-color: #212121; 
+	padding: 5px; 
+  	border-radius: 10px;
+  	display: table;
+  	width: 70%;
+  	margin: auto;
+  	
+}
+.detailLineDiv{
+	width: 30%;
+	display:inline-block;
+	border-top: 1px solid #303030;
+}
+.detailDiv50{
+	width:50%;
+	float:left;
+	display: table-row;
+}
+.detailDiv25{
+	width:25%;
+	float:left;
+	display: table-row;
+}
+.detailDiv33{
+	width:33%;
+	float:left;
+	display: table-row;
+}
+.detailDiv125{
+	width:12.5%;
+	float:left;
+	display: table-row;
+}
+.detailDivChild{
+	width:25%;
+	float:left;
+	display: table-row;
+	line-height: 8px;
+	
+}
+.highlight{
+	color: #ffff00;
+}
+
+.body{
+	display:none;
+}
+.grayDot {
+  height: 15px;
+  width: 15px;
+  background-color: #313131;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dots{
+	display:none;
+}
+.yellowDot {
+  height: 15px;
+  width: 15px;
+  background-color: #ffff00;
+  border-radius: 50%;
+  display: inline-block;
 }
