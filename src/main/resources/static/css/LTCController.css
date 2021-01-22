@@ -38,6 +38,17 @@ div {
 	margin:0 auto;
 }
 
+#detailDiv{
+	background-color: #212121; 
+	padding: 5px; 
+  	border-radius: 10px;
+  	display: table;
+  	width: 70%;
+  	margin: auto;
+  	font-family: 'Open Sans Condensed', sans-serif; 
+}
+
+
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
@@ -50,6 +61,9 @@ tr:nth-child(even) {
   color: white !important;
   
   
+}
+.quotes{
+	color: #8e8e8e;
 }
 .calcButton{
 	background-color: #313131;
@@ -87,6 +101,7 @@ input::-webkit-inner-spin-button {
 	background-color: #212121;
 }
 .demonstrateDiv{
+	min-height:150px;
 	max-width: 200px;
 	margin: auto;
 }
@@ -101,15 +116,7 @@ input::-webkit-inner-spin-button {
     /* var txt = $("#flip").is(':visible') ? 'Read More' : 'Read Less';
     $("#flip").text(txt); */
 
-.detailDiv{
-	background-color: #212121; 
-	padding: 5px; 
-  	border-radius: 10px;
-  	display: table;
-  	width: 70%;
-  	margin: auto;
-  	
-}
+
 .detailLineDiv{
 	width: 30%;
 	display:inline-block;
@@ -156,13 +163,28 @@ input::-webkit-inner-spin-button {
   border-radius: 50%;
   display: inline-block;
 }
+#countit{
+	display:none;
+}
 .dots{
 	display:none;
+}
+.video{
+	max-width: 500px;
+	margins: auto;
+	
 }
 .yellowDot {
   height: 15px;
   width: 15px;
   background-color: #ffff00;
+  border-radius: 50%;
+  display: inline-block;
+}
+.countDot{
+  height: 15px;
+  width: 15px;
+  background-color: #1a1a1a;
   border-radius: 50%;
   display: inline-block;
 }

@@ -5,13 +5,35 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/LTCController.css">
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %> 
 <script type="text/javascript" src="js/LTCController.js"></script>
 <meta charset="UTF-8">
+<meta name="keywords" content="java, life, lifetime, calculator, lifetime calculator, java spring">
+<meta name="description" content="Calculates lifetime">
+<meta name="author" content="David Yoon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
-<title>Insert title here</title>
+<title>Lifetime Calculator</title>
 </head>
 <body>
+	<%
+
+	int count;
+	
+	if(session.getAttribute("count") != null){
+		count = ((Integer)session.getAttribute("count")).intValue();
+	}else{
+		count = 0;	
+	}
+	
+	count++;
+	
+	%>
+	 
+	
+	<%
+	session.setAttribute("count", new Integer(count));
+	%>
 	<div class="titleDiv">
 		<h1 id="title"><a href="/">Life<span id="titleColor">time Calc</span>ulator</a></h1>
 	</div>
@@ -19,7 +41,7 @@
 	<div class="head">
 		<br>
 		<div>
-			<form id ="input" method="POST" action="/calculateDeath">
+			<form id ="input1" method="POST" action="/calculateDeath">
 				<input class="inputBox" type="number" required="required" name="deathAge" min="1" max="200" placeholder="Life expectancy (years)" autocomplete="off">
 				<input class="calcButton" type="submit" value="Calculate" />
 			</form><br>
@@ -43,15 +65,24 @@
 	</div>
 	
 	<div id="lineDiv"></div>
-	<div>
-		<p id="stat1">Life Expectancy : <span class="highlight">${deathAge}</span> years.</p>
-		<p id="stat2">Current Age : <span class="highlight">${myAge}</span> years old.</p>
-		<p id="stat3">Sleeps for : <span class="highlight">${sleepAmount}</span> hours a day.</p>
+	<div >
+		<a class="quotes" href="https://www.actitime.com/time-management/best-time-quotes/"target="_blank"><h3>"If you truly love life,</h3>
+		<h3>don't waste time</h3>
+		<h3>because time is what life is made of."</h3>
+		<h3>- Bruce Lee</h3></a>
 	</div>
-		
-	<div id="lineDiv"><p id="flip" class="tips">Read More</p></div>
-	<div class="body">
-		<div id="detailDiv" class="detailDiv">
+	
+	<div  id="lineDiv"><p id="flip" class="tips">Read More</p></div>
+	<div class="body">	
+		<div id="detailDiv">
+			<div class="detailDiv100">
+				<p >Life Expectancy : <span class="highlight">${deathAge}</span> years.</p>
+				<p >Current Age : <span class="highlight">${myAge}</span> years old.</p>
+				<p>Sleeps for : <span class="highlight">${sleepAmount}</span> hours a day.</p>
+			</div>
+			
+			<div id="detailDivlineDiv"></div>
+			
 			<div class="detailDiv100">
 					<p>Life Spent : <span class="highlight">${spentTime}</span></p>
 			</div>
@@ -63,14 +94,13 @@
 					<br>
 				</div>
 				<div class="detailDiv25" >
-					<br>
-					<p>Remaining Lifetime :</p>
+					<p style="margin-top: 45px;">Remaining time :</p>
 				</div>
 				<div class="detailDivChild">
-					<p><span class="highlight">${remainingYears}</span></p>
-					<p><span class="highlight">${remainingMonths}</span></p>
-					<p><span class="highlight">${remainingWeeks}</span></p>
-					<p><span class="highlight">${remainingDays}</span></p>
+					<p><span class="highlight">${remainingYears} (${availableTime})</span> years.</p>
+					<p><span class="highlight">${remainingMonths}</span> in months.</p>
+					<p><span class="highlight">${remainingWeeks}</span> in weeks.</p>
+					<p><span class="highlight">${remainingDays}</span> in days.</p>
 				</div>
 				<div class="detailDiv25" >
 					<br>
@@ -80,10 +110,31 @@
 			<div id="detailDivlineDiv"></div>
 			
 			<div class="detailDiv100">
-				<p><span class="highlight">${sleepAmount} hours</span> of sleep a day is spending </p>
-				<p>total <span class="highlight">${lifetimeAsleep}% (${yearsAsleep} years)</span>  of remaining lifetime Asleep.</p>
+				<p><span class="highlight">${sleepAmount} hours</span> of sleep a day is spending about</p>
+				<p>total <span class="highlight">${yearsAsleep} years (${lifetimeAsleep}%)</span>  of remaining lifetime asleep</p>
+				<p>and <span class="highlight">${awakeYears} years (${awakePercentage}%)</span> awake.</p>
 			</div>
 		</div>
 	</div>
+	<br>
+
+	
+	<div id="lineDiv"></div>
+	
+	
+	<div class="motive">
+		<p class="tips">Motivated By</p>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/arj7oStGLkU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+	<br>
+	
+	<div id="lineDiv"></div>
+	<div style="margin:auto;">
+		<p style="display:inline-block;margin-right: 10px;"class="tips">Personal Project <a style="vertical-align: sub;display:inline-block;"href="https://www.linkedin.com/in/david-yoon-937567204/" target="_blank" ><img src="<spring:url value='/resources/linkedin.png'/>" style="width:25px;"></a></p>
+		<p style="float:right"><span class="countDot"></span><span id="countit" style="float:right; "><%=count%></span></p>	
+	</div>
+	
+	
+	
 </body>
 </html>

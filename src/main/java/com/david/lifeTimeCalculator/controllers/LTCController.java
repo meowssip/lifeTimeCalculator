@@ -4,6 +4,9 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class LTCController {
@@ -21,8 +26,10 @@ public class LTCController {
 	
 	@RequestMapping("/")
 	public String LTCDomain(Model model) {
+		
 		return "LTCDomain.jsp";
 	}
+	
 	@RequestMapping(value="/calculateDeath", method=RequestMethod.POST)
 	public String calculateDeath(@RequestParam(value="deathAge")int deathAge, Model model) {
 		lifetimeArray = new String[deathAge];
@@ -109,13 +116,16 @@ public class LTCController {
 		.addAttribute("myAge",varMyAge)
 		.addAttribute("sleepAmount", varSleepAmount)
 		.addAttribute("calculation", showArray)
-		.addAttribute("spentTime", new DecimalFormat("#.##").format(((double)varMyAge/varDeathAge*100)) +"(%)")
-		.addAttribute("remainingYears", (varDeathAge-varMyAge)+" years")
-		.addAttribute("remainingMonths", ((varDeathAge-varMyAge)*12)+" months")
-		.addAttribute("remainingWeeks", ((varDeathAge-varMyAge)*52)+" weeks")
-		.addAttribute("remainingDays", ((varDeathAge-varMyAge)*365)+" days")
+		.addAttribute("spentTime", new DecimalFormat("#.##").format(((double)varMyAge/varDeathAge)*100) +"%")
+		.addAttribute("remainingYears", (varDeathAge-varMyAge))
+		.addAttribute("remainingMonths", ((varDeathAge-varMyAge)*12))
+		.addAttribute("remainingWeeks", ((varDeathAge-varMyAge)*52))
+		.addAttribute("remainingDays", ((varDeathAge-varMyAge)*365))
+		.addAttribute("availableTime", new DecimalFormat("#.##").format(((double)varDeathAge-varMyAge)/varDeathAge*100) +"%")
 		.addAttribute("lifetimeAsleep", new DecimalFormat("#.#").format(((double)varSleepAmount/24)*100))
-		.addAttribute("yearsAsleep", sleepingTimeRestOfLife(varSleepAmount));
+		.addAttribute("yearsAsleep", sleepingTimeRestOfLife(varSleepAmount))
+		.addAttribute("awakeYears", varDeathAge-varMyAge-sleepingTimeRestOfLife(varSleepAmount))
+		.addAttribute("awakePercentage", new DecimalFormat("#.#").format((((double)varDeathAge-varMyAge-sleepingTimeRestOfLife(varSleepAmount))/varDeathAge)*100));
 		return "LTCDomain.jsp";
 	}
 	
