@@ -1,6 +1,7 @@
 package com.david.lifeTimeCalculator;
 
 import org.apache.catalina.connector.Connector;
+import org.apache.coyote.ajp.AbstractAjpProtocol;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -21,7 +22,9 @@ public class LifeTimeCalculatorApplication {
         ajpConnector.setSecure(false);
         ajpConnector.setAllowTrace(false);
         ajpConnector.setScheme("http");
+        ((AbstractAjpProtocol) ajpConnector.getProtocolHandler()).setSecretRequired(false);
         tomcat.addAdditionalTomcatConnectors(ajpConnector);
+        
         return tomcat;
     }
 
